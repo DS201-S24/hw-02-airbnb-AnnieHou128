@@ -34,24 +34,52 @@ ggplot(data = airbnb, mapping = aes(x = price)) +
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+We could see that neiborhoods such as Old Town and New Town tend to have higher prices with higher densities, which makes their median price also relatively higher. Also, their prices are more spreaded, which makes their standard deviation higher as well.
 
 ```{r top-5-median}
-# remove this comment and add the code for Exercise 4 here
+top_neighborhoods <- airbnb %>%
+  filter(!is.na(price)) %>%
+  group_by(neighborhood) %>%
+  summarize(median_price = median(price, na.rm = TRUE)) %>%
+  arrange(desc(median_price)) %>%
+  top_n(5, median_price)
+
 ```
 
 ```{r top-5-median-plot}
-# remove this comment and add the code for Exercise 4 here
+filtered_data <- airbnb %>%
+  filter(neighborhood %in% top_neighborhoods$neighborhood)
+
+  ggplot(filtered_data, aes(x = price, fill = neighborhood)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Density Plot of Listing Prices in Top 5 Neighborhoods")
 ```
 
 ```{r top-5-median-summary-stats}
-# remove this comment and add the code for Exercise 4 here
+summary_stats <- filtered_data %>%
+  group_by(neighborhood) %>%
+  summarize(
+    minimum = min(price, na.rm = TRUE),
+    mean = mean(price, na.rm = TRUE),
+    median = median(price, na.rm = TRUE),
+    std_deviation = sd(price, na.rm = TRUE),
+    iqr = IQR(price, na.rm = TRUE),
+    maximum = max(price, na.rm = TRUE)
+  )
+print(summary_stats)
 ```
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+I chose the box plot because it could provide insights into the median, quartiles, and potential outliers in the data. For example, some neighborhoods like Old Town and Leith have more spreaded dat points, meaning that their reviews rating tend to fluctuate and vary a lot. Some neighborhoods like New Town has a relatively smaller range of interquartile data, which means that the ratings tend to be close together around the same level.
 
 ```{r review-scores-rating}
-# remove this comment and add the code for Exercise 5 here
+ggplot(data = airbnb, aes(x = neighborhood, y = review_scores_rating, fill = neighborhood)) +
+  geom_boxplot() +
+  labs(
+    title = "Distribution of Review Scores by Neighborhood",
+    y = "Review Scores Rating",
+    x = "Neighborhood"
+  ) 
+
 ```
