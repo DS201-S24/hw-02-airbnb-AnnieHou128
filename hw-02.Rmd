@@ -1,7 +1,7 @@
 ---
 title: "HW 2 - Airbnb"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Annie Hou"
+date: "02/07/2024"
 output: html_document
 ---
 
@@ -16,11 +16,11 @@ airbnb <- read_csv("data/airbnb.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+There are 13245 rows in the dataset.
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 2 here.
+Each row represents the information of an airbnb, including an id, price, neighborhood, accomodates, number of rooms and beds, ratings and score, and so on.
 
 ### Exercise 3
 
