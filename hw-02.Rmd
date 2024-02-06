@@ -24,10 +24,12 @@ Each row represents the information of an airbnb, including an id, price, neighb
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+I chose two rows with x being the price because two rows allowing people to compare vertically between two neighborhoods or horizontally between several neighborhoods by price; also, one row would be too compact for the aesthetical measure.
 
 ```{r prices-neighbourhoods}
-# remove this comment and add the code for Exercise 3 here
+ggplot(data = airbnb, mapping = aes(x = price)) +
+  geom_histogram(binwidth = 100) +
+  facet_wrap(~neighborhood, nrow=2)
 ```
 
 ### Exercise 4
